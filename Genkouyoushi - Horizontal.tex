@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{pdflscape}
+\usepackage[top=1.6cm, bottom=1.6cm, left=1.6cm, right=1.6cm]{geometry} % for when I feel a burning need to change the margins
+\pagestyle{empty}
+\newcommand\genkoyoshi[4]{% maxrow, maxcol, size, sep
+  \def\maxrow{#1}%
+  \def\maxcol{#2}%
+  \def\size{#3}%
+  \def\sep{#4}%
+  \begin{tikzpicture}
+    \pgfmathsetmacro{\inc}{\size+\sep}
+    \foreach \col in {1,...,\maxcol}{
+      \foreach \row in {1,...,\maxrow}{
+        \draw ({(\col-1)*\inc pt},{\row*\size})
+        rectangle ++ (\size,\size);
+      }
+      \draw ({(\col-1)*\inc-\sep},{\size})
+      rectangle ++ (\sep,20*\size);
+    }
+  \end{tikzpicture}%
+}
+\begin{document}
+\begin{landscape}
+%\begin{center}
+\genkoyoshi{20}{20}{9mm}{3mm}
+%\end{center}
+\end{landscape}
+\end{document}
